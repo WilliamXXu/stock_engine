@@ -1,3 +1,4 @@
+#tetst message
 class Instrument():
 
 	def __init__(self,sym,quan,cost,currency,division,zhongwen,price):
