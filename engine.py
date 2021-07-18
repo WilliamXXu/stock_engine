@@ -96,9 +96,7 @@ class Engine():
 
 	def __repr__(self):
 		import pandas as pd
-		import plotly.graph_objects as go
-
-
+		
 		print('\n\n')
 		li=[]
 		li_money=[]
