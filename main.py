@@ -1,6 +1,6 @@
 from engine import Engine
 import pickle
-#换手率 做t
+#换手率 波动率 做t rank by   division  level
 
 a=Engine()
 a.cash('USD',10000)

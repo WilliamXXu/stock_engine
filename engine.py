@@ -1,3 +1,16 @@
+class Instrument():
+
+	def __init__(self,sym,quan,cost,currency,division,zhongwen,price):
+
+		
+		self.sym=sym
+		self.currency=currency
+		self.division=division
+		self.quan=quan
+		self.cost=cost
+		self.price=price
+		self.zhongwen=zhongwen
+		
 class Engine():
 	def __init__(self):
 		import pickle	
@@ -23,26 +36,56 @@ class Engine():
 			self.money=dict()
 
 
+	def google(self,symbol):
+		from bs4 import BeautifulSoup
+		import requests
+		u='https://www.google.com/finance/quote/'
+		#print(u+symbol)
+		req = requests.get(u+symbol)
+		soup = BeautifulSoup(req.text,'html.parser')
+		for l in soup.find_all('div'):
+			p=l.get('data-last-price')
+			#print(p)
+			if not(p is None):
+				return float(p)
+		raise IndexError('stock symbol error ')
+
 	def fetch(self,ticker):
 		import yfinance as yf
 		import math
 		res=[]
 		#print(ticker)
-		x=yf.download(tickers=ticker,period='10m',interval='1m')		
+		
+		x=yf.download(tickers=ticker,period='10m',interval='1m')
+		print(x)
+		print(type(x))
+		print(x.empty)
 		for s in ticker:
-			ind=0
-			while ind<=9: 
-				ind+=1
-				last=x.iloc[-ind,:]
+			if x.empty:
+				print('switch to google')
+				res.append(self.google(s))
+			else:
+				ind=0
+				flag=True
+				while ind<=9: 
+					ind+=1
+					last=x.iloc[-ind,:]
 
-				if len(ticker)>1:
-					valu=float(last['Close'][s])
-				else:
-					valu=float(last['Close'])
-				if not math.isnan(valu):
-					res.append(valu)
-					break
+					if len(ticker)>1:
+						valu=float(last['Close'][s])
+					else:
+						valu=float(last['Close'])
+					if not math.isnan(valu):
+						res.append(valu)
+						flag=False
+						break
+				if flag:
+					print('switch to google')
+					res.append(self.google(s))
+				
 		return res
+		
+
 
 	def update(self):
 		li=list(self.stocks.keys())
