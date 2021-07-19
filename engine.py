@@ -1,9 +1,9 @@
 #tetst message
 class Instrument():
 
-	def __init__(self,sym,quan,cost,currency,division,zhongwen,price):
+	def __init__(self,sym,alis,quan,cost,currency,division,zhongwen,price):
 
-		
+		self.alis=alis
 		self.sym=sym
 		self.currency=currency
 		self.division=division
@@ -51,47 +51,10 @@ class Engine():
 				return float(p)
 		raise IndexError('stock symbol error ')
 
-	def fetch(self,ticker):
-		import yfinance as yf
-		import math
-		res=[]
-		#print(ticker)
-		
-		x=yf.download(tickers=ticker,period='10m',interval='1m')
-		print(x)
-		print(type(x))
-		print(x.empty)
-		for s in ticker:
-			if x.empty:
-				print('switch to google')
-				res.append(self.google(s))
-			else:
-				ind=0
-				flag=True
-				while ind<=9: 
-					ind+=1
-					last=x.iloc[-ind,:]
-
-					if len(ticker)>1:
-						valu=float(last['Close'][s])
-					else:
-						valu=float(last['Close'])
-					if not math.isnan(valu):
-						res.append(valu)
-						flag=False
-						break
-				if flag:
-					print('switch to google')
-					res.append(self.google(s))
-				
-		return res
-
-
 	def update(self):
 		li=list(self.stocks.keys())
-		valu=self.fetch(li)
-		for x in range(len(li)):
-			self.stocks[li[x]].price=valu[x]
+		for x in li:
+			self.stocks[x].price=self.google(self.stocks[x].alis)
 
 	def __repr__(self):
 		import pandas as pd
@@ -127,10 +90,10 @@ class Engine():
 
 		self.save()
 
-	def trade(self,sym,quan,cost,fee,*args):
+	def trade(self,sym,alis,quan,cost,fee,*args):
 		from numpy import sign
 		cost=(quan*cost+fee)/quan
-		market_price=self.fetch([sym])
+		market_price=self.google(alis)
 		if not (sym in self.stocks.keys()):
 			print('new investment')
 			if len(args)==2:
@@ -138,7 +101,7 @@ class Engine():
 				args.append('?')
 					
 			try:
-				self.stocks[sym]=Instrument(sym,quan,cost,args[0],args[1],args[2],market_price[0])
+				self.stocks[sym]=Instrument(sym,alis,quan,cost,args[0],args[1],args[2],market_price[0])
 				self.cash(self.stocks[sym].currency,(-cost)*quan)
 			except IndexError:
 				raise IndexError('first time buy,please provide full info')
