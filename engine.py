@@ -55,6 +55,7 @@ class Engine():
 		li=list(self.stocks.keys())
 		for x in li:
 			self.stocks[x].price=self.google(self.stocks[x].alis)
+		self.save()
 
 	def __repr__(self):
 		import pandas as pd
@@ -93,7 +94,6 @@ class Engine():
 	def trade(self,sym,alis,quan,cost,fee,*args):
 		from numpy import sign
 		cost=(quan*cost+fee)/quan
-		market_price=self.google(alis)
 		if not (sym in self.stocks.keys()):
 			print('new investment')
 			if len(args)==2:
@@ -101,7 +101,7 @@ class Engine():
 				args.append('?')
 					
 			try:
-				self.stocks[sym]=Instrument(sym,alis,quan,cost,args[0],args[1],args[2],market_price[0])
+				self.stocks[sym]=Instrument(sym,alis,quan,cost,args[0],args[1],args[2],self.google(alis))
 				self.cash(self.stocks[sym].currency,(-cost)*quan)
 			except IndexError:
 				raise IndexError('first time buy,please provide full info')
