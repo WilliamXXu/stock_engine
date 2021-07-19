@@ -99,7 +99,7 @@ class Engine():
 		
 		print('\n\n')
 		li=[]
-		li_money=[]
+
 		for x in self.stocks:
 			t=vars(self.stocks[x])
 			li.append(pd.DataFrame(t,index=['?']))
@@ -126,6 +126,8 @@ class Engine():
 		except KeyError:
 			self.money[currency]=amount
 
+		self.save()
+
 	def trade(self,sym,quan,cost,fee,*args):
 		from numpy import sign
 		cost=(quan*cost+fee)/quan
@@ -135,7 +137,7 @@ class Engine():
 			if len(args)==2:
 				args=list(args)
 				args.append('?')
-			from instrument import Instrument						
+					
 			try:
 				self.stocks[sym]=Instrument(sym,quan,cost,args[0],args[1],args[2],market_price[0])
 				self.cash(self.stocks[sym].currency,(-cost)*quan)
@@ -152,6 +154,6 @@ class Engine():
 				obj.cost=(obj.quan*obj.cost+quan*cost)/new_quan
 				obj.quan=new_quan
 				self.stocks[sym].price=market_price[0]
-		
+		self.save()
 
 
