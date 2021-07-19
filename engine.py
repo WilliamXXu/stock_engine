@@ -50,7 +50,7 @@ class Engine():
 			if not(p is None):
 				return float(p)
 		raise IndexError('stock symbol error ')
-
+'''
 	def fetch(self,ticker):
 		import yfinance as yf
 		import math
@@ -85,14 +85,13 @@ class Engine():
 					res.append(self.google(s))
 				
 		return res
-		
+		'''
 
 
 	def update(self):
 		li=list(self.stocks.keys())
-		valu=self.fetch(li)
-		for x in range(len(li)):
-			self.stocks[li[x]].price=valu[x]
+		for x in li:
+			self.stocks[x].price=self.google(x)
 
 	def __repr__(self):
 		import pandas as pd
@@ -131,7 +130,7 @@ class Engine():
 	def trade(self,sym,quan,cost,fee,*args):
 		from numpy import sign
 		cost=(quan*cost+fee)/quan
-		market_price=self.fetch([sym])
+		market_price=self.google(sym)
 		if not (sym in self.stocks.keys()):
 			print('new investment')
 			if len(args)==2:
