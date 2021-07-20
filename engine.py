@@ -115,7 +115,7 @@ class Engine():
 			else:
 				obj.cost=(obj.quan*obj.cost+quan*cost)/new_quan
 				obj.quan=new_quan
-				self.stocks[sym].price=market_price[0]
+				self.stocks[sym].price=self.google(alis)
 		self.save()
 
 
