@@ -47,6 +47,8 @@ while True:
 			pass
 		try:
 			os.rename('data_temp.pickle','data.pickle')
+		else:
+			pass
 		a=Engine()
 
 
