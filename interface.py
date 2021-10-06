@@ -47,6 +47,8 @@ while True:
 			pass
 		try:
 			os.rename('data_temp.pickle','data.pickle')
+		except:
+			print('no temp data?')
 		else:
 			pass
 		a=Engine()
