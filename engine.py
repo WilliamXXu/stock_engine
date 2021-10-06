@@ -59,7 +59,7 @@ class Engine():
 	def update(self):
 		li=list(self.stocks.keys())
 		for x in li:
-			self.stocks[x].price=self.google(self.stocks[x].alis)
+			self.stocks[x].price=self.google(self.stocks[x].sym)
 
 	def __repr__(self):
 		import pandas as pd
