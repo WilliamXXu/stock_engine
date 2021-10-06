@@ -31,7 +31,7 @@ while True:
 		quantity=input('How many shares you buy/sell?\n')
 		cost=input('For how much you buy/sell it?\n')
 		fee=input('Estimate the commission please. Press Enter if zero\n')
-		if not len(currency):
+		if not len(fee):
 			fee='0'
 
 	if i=='1':
