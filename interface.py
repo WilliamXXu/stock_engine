@@ -7,7 +7,7 @@ cur_dict={'US':'USD','UK':'GBP','HK':'HKD','CN':'CNY','EU':'EUR','CH':'CHF'}
 a=Engine()
 
 while True:
-	i=input('---------------------------------\nHow can I serve you, Commander?\n 0. view portofolio (updated price) \n 1. open a new position \n 2. deal with an existing position \n 3. Save changes 4.retrieve temporary data\n---------------------------------\n')
+	i=input('---------------------------------\nHow can I serve you, Commander?\n 0. view portofolio (updated price) \n 1. open a new position \n 2. deal with an existing position \n 3. Save changes \n4.retrieve temporary data\n---------------------------------\n')
 
 	if i=='0':
 		a.update()
@@ -41,7 +41,10 @@ while True:
 		a.save()
 	if i=='4':
 		import os
-		os.remove('data.pickle')
+		try:
+			os.remove('data.pickle')
+		except FileNotFoundError:
+			pass
 		os.rename('data_temp.pickle','data.pickle')
 		a=Engine()
 
