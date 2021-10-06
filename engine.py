@@ -1,7 +1,7 @@
 #tetst message
 class Instrument():
 
-	def __init__(self,sym,alis,quan,cost,currency,division,zhongwen,price):
+	def __init__(self,sym,quan,cost,currency,division,zhongwen,price):
 
 		self.alis=alis
 		self.sym=sym
@@ -24,6 +24,11 @@ class Engine():
 				self.stocks=dict()
 				self.money=dict()
 
+	def save_temp(self):
+		import pickle
+		with open('data_temp.pickle','wb') as f:
+			pickle.dump([self.stocks,self.money],f,pickle.HIGHEST_PROTOCOL)
+
 	def save(self):
 		import pickle
 		with open('data.pickle','wb') as f:
@@ -35,6 +40,7 @@ class Engine():
 		if i=='yes':
 			self.stocks=dict()
 			self.money=dict()
+		self.save_temp()
 
 
 	def google(self,symbol):
@@ -55,7 +61,6 @@ class Engine():
 		li=list(self.stocks.keys())
 		for x in li:
 			self.stocks[x].price=self.google(self.stocks[x].alis)
-		self.save()
 
 	def __repr__(self):
 		import pandas as pd
@@ -74,7 +79,7 @@ class Engine():
 			print(res.to_string())
 		print('\n\n')
 		print(self.money)
-
+		self.save_temp()
 		return '\n'
 
 	def __print__(self):
@@ -89,9 +94,9 @@ class Engine():
 		except KeyError:
 			self.money[currency]=amount
 
-		self.save()
+		self.save_temp()
 
-	def trade(self,sym,alis,quan,cost,fee,*args):
+	def trade(self,sym,quan,cost,fee,*args):
 		from numpy import sign
 		cost=(quan*cost+fee)/quan
 		if not (sym in self.stocks.keys()):
@@ -101,7 +106,7 @@ class Engine():
 				args.append('?')
 					
 			try:
-				self.stocks[sym]=Instrument(sym,alis,quan,cost,args[0],args[1],args[2],self.google(alis))
+				self.stocks[sym]=Instrument(sym,quan,cost,args[0],args[1],args[2],self.google(sym))
 				self.cash(self.stocks[sym].currency,(-cost)*quan)
 			except IndexError:
 				raise IndexError('first time buy,please provide full info')
@@ -115,7 +120,7 @@ class Engine():
 			else:
 				obj.cost=(obj.quan*obj.cost+quan*cost)/new_quan
 				obj.quan=new_quan
-				self.stocks[sym].price=self.google(alis)
-		self.save()
+				self.stocks[sym].price=self.google(sym)
+		self.save_temp()
 
 
