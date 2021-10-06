@@ -79,7 +79,6 @@ class Engine():
 			print(res.to_string())
 		print('\n\n')
 		print(self.money)
-		self.save_temp()
 		return '\n'
 
 	def __print__(self):
