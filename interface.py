@@ -13,12 +13,6 @@ while True:
 		a.update()
 	if i=='0':
 		repr(a)
-'''
-		from datetime import datetime
-		now = datetime.now()
-		input('updated at '+now.strftime("%d/%m/%Y %H:%M:%S")+'\nPress Enter to continue\n')
-		'''
-
 	if i=='1':
 		division=input('Which market? (CN,US,UK,HK,EU,CH....)\n')
 		currency=input('Which currency? (USD,GBP,HKD...) Press Enter if can be inferred\n')
