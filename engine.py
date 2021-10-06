@@ -97,6 +97,9 @@ class Engine():
 		self.save_temp()
 
 	def trade(self,sym,quan,cost,fee,*args):
+		quan=float(quan)
+		cost=float(cost)
+		fee=float(fee)
 		from numpy import sign
 		cost=(quan*cost+fee)/quan
 		if not (sym in self.stocks.keys()):
