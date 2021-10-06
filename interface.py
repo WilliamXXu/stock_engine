@@ -45,7 +45,8 @@ while True:
 			os.remove('data.pickle')
 		except FileNotFoundError:
 			pass
-		os.rename('data_temp.pickle','data.pickle')
+		try:
+			os.rename('data_temp.pickle','data.pickle')
 		a=Engine()
 
 
