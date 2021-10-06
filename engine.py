@@ -27,6 +27,7 @@ class Engine():
 		import pickle
 		with open('data_temp.pickle','wb') as f:
 			pickle.dump([self.stocks,self.money],f,pickle.HIGHEST_PROTOCOL)
+		print('temp created')
 
 	def save(self):
 		import pickle
