@@ -1,16 +1,15 @@
 #tetst message
 class Instrument():
 
-	def __init__(self,sym,quan,cost,currency,division,zhongwen,price):
+	def __init__(self,sym,quan,cost,currency,division,alis,price):
 
-		self.alis=alis
 		self.sym=sym
 		self.currency=currency
 		self.division=division
 		self.quan=quan
 		self.cost=cost
 		self.price=price
-		self.zhongwen=zhongwen
+		self.alis=alis
 		
 class Engine():
 	def __init__(self):
