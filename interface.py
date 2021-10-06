@@ -16,7 +16,7 @@ while True:
 
 		from datetime import datetime
 		now = datetime.now()
-		input('updated at '+now.strftime("%d/%m/%Y %H:%M:%S")+'\nPress Enter to continue')
+		input('updated at '+now.strftime("%d/%m/%Y %H:%M:%S")+'\nPress Enter to continue\n')
 
 	if i=='1':
 		division=input('Which market? (CN,US,UK,HK,EU,CH....)\n')
