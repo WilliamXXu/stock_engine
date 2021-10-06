@@ -13,6 +13,7 @@ while True:
 		a.update()
 	if i=='0':
 		repr(a)
+		input('\nPress Enter to continue\n')
 	if i=='1':
 		division=input('Which market? (CN,US,UK,HK,EU,CH....)\n')
 		currency=input('Which currency? (USD,GBP,HKD...) Press Enter if can be inferred\n')
