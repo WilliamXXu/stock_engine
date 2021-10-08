@@ -7,7 +7,7 @@ trans={':LON':'.L',':HKG':'.HK',':BME':'.MC',':NYSE':'',':OTCMKTS':'',':ETR':'.D
 a=Engine()
 
 while True:
-	i=input('---------------------------------\nHow can I serve you, Commander?\n u. price update \n uu. full update \n 0. view portofolio (updated price) \n 1. open a new position \n 2. deal with an existing position \n 3. Save changes \n 4.retrieve temporary data\n 5. manage additional indicators\n---------------------------------\n')
+	i=input('---------------------------------\nHow can I serve you, Commander?\n u. price update \n uu. full update \n 0. view portofolio (updated price) \n 1. open a new position \n 2. deal with an existing position \n 3. Save changes \n 4. retrieve temporary data\n 5. manage additional indicators\n---------------------------------\n')
 
 	if i =='u':
 		a.update()
@@ -15,7 +15,7 @@ while True:
 		a.update()
 		a.propertyUpdate()
 	if i =='5':
-		print('Current indicators: '+a.properties+' \n')
+		print('Current indicators: '+str(a.properties)+' \n')
 		print('You can choose from: Beta, PE, ROE, Yield\n')
 		while 1:
 			ind=input('The indicator that you want to add or remove? Press Enter to exit.\n')
