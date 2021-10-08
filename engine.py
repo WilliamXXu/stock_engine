@@ -16,26 +16,28 @@ class Instrument():
 class Engine():
 	def __init__(self):
 		import pickle
-		self.properties={'Beta','PE','ROE','Yield'}	
+		
 		try:
 			with open('data.pickle','rb') as g:
 				temp=pickle.load(g)
 				self.stocks=temp[0]
 				self.money=temp[1]
+				self.properties=temp[2]
 		except FileNotFoundError:
 				self.stocks=dict()
 				self.money=dict()
+				self.properties={'Beta','PE','ROE','Yield'}	 #default
 		
 	def save_temp(self):
 		import pickle
 		with open('data_temp.pickle','wb') as f:
-			pickle.dump([self.stocks,self.money],f,pickle.HIGHEST_PROTOCOL)
+			pickle.dump([self.stocks,self.money,self.properties],f,pickle.HIGHEST_PROTOCOL)
 		print('temp created')
 
 	def save(self):
 		import pickle
 		with open('data.pickle','wb') as f:
-			pickle.dump([self.stocks,self.money],f,pickle.HIGHEST_PROTOCOL)
+			pickle.dump([self.stocks,self.money,self.properties],f,pickle.HIGHEST_PROTOCOL)
 
 
 	def purge(self):
