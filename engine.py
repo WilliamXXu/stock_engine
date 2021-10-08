@@ -50,11 +50,9 @@ class Engine():
 	def yfi(self,symbol):
 		import yfinance as yf
 		mp={'Beta':'beta','PE':'trailingPE','ROE':'returnOnEquity','Yield':'trailingAnnualDividendYield'}
-	
+		
 		d=dict()
 		res=yf.Ticker(symbol).info
-		print(res)
-		print(res['beta'])
 		for x in mp:
 				d[x]=res[mp[x]]
 		return d
@@ -81,7 +79,7 @@ class Engine():
 	def propertyUpdate(self):
 		li=list(self.stocks.keys())
 		for x in li:
-			self.stocks[x].properties=self.yfi(self.stocks[x].sym)
+			self.stocks[x].properties=self.yfi(self.stocks[x].sym1)
 
 	def __repr__(self):
 		import pandas as pd
@@ -132,7 +130,7 @@ class Engine():
 					
 			try:
 				self.stocks[sym]=Instrument(sym,quan,cost,args[0],args[1],args[2],args[3],self.google(sym))
-				self.stocks[sym].properties=self.yfi(sym)
+				self.stocks[sym].properties=self.yfi(args[3])
 				self.cash(self.stocks[sym].currency,(-cost)*quan)
 
 			except IndexError:
