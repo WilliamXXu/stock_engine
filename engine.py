@@ -50,10 +50,12 @@ class Engine():
 	def yfi(self,symbol):
 		import yfinance as yf
 		mp={'Beta':'beta','PE':'trailingPE','ROE':'returnOnEquity','Yield':'trailingAnnualDividendYield'}
-		
+		print(symbol)
 		d=dict()
 		res=yf.Ticker(symbol).info
+		print(res)
 		for x in mp:
+				print(x)
 				d[x]=res[mp[x]]
 		return d
 
