@@ -45,8 +45,9 @@ class Engine():
 	def yfi(self,symbol):
 		import yfinance as yf
 		res=yf.Ticker(symbol)
-		return res.info['currentPrice']
-
+		p=res.info['currentPrice']
+		print(symbol+'\n')
+		return p
 
 	def google(self,symbol):
 		from bs4 import BeautifulSoup
