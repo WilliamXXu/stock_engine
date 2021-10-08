@@ -2,12 +2,13 @@ from engine import Engine
 a=Engine()
 
 trans={':LON':'.L',':HKG':'.HK',':BME':'.MC',':NYSE':'',':OTCMKTS':'',':ETR':'.DE'}
+b=Engine()
 for x in a.stocks.keys():
 	for y in trans.keys():
 		if y in x:
 			n=x.replace(y,trans[y])
-			a.stocks[x].sym=n
-			a.stocks[n]=a.stocks[x]
-			del a.stocks[x]
+			b.stocks[x].sym=n
+			b.stocks[n]=b.stocks[x]
+			del b.stocks[x]
 
-a.save()
+b.save()
