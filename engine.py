@@ -83,7 +83,7 @@ class Engine():
 		import pandas as pd
 
 		print('\n\n')
-		
+		li=[]
 
 		for x in self.stocks:
 			t=vars(self.stocks[x])
