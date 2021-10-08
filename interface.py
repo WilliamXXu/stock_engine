@@ -23,8 +23,12 @@ while True:
 				break
 			elif ind in a.properties:
 				a.properties.remove(ind)
+				print('gone')
+				print(str(a.properties))
 			else:
 				a.properties.add(ind)
+				print('added')
+				print(str(a.properties))
 
 	if i=='0':
 		repr(a)
