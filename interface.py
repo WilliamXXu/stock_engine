@@ -6,9 +6,9 @@ trans={':LON':'.L',':HKG':'.HK',':BME':'.MC',':NYSE':'',':OTCMKTS':'',':ETR':'.D
 
 a=Engine()
 
-while True:
+while 1:
 	i=input('---------------------------------\nHow can I serve you, Commander?\n u. price update \n uu. full update \n 0. view portofolio (updated price) \n 1. open a new position \n 2. deal with an existing position \n 3. Save changes \n 4. retrieve temporary data\n 5. manage additional indicators\n---------------------------------\n')
-
+	print(str(a.properties))
 	if i =='u':
 		a.update()
 	if i =='uu':
@@ -75,6 +75,7 @@ while True:
 		else:
 			pass
 		a=Engine()
+	print(str(a.properties))
 
 
 
