@@ -65,7 +65,7 @@ class Engine():
 	def update(self):
 		li=list(self.stocks.keys())
 		for x in li:
-			self.stocks[x].price=self.google(self.stocks[x].sym)
+			self.stocks[x].price=self.yfi(self.stocks[x].sym)
 
 	def __repr__(self):
 		import pandas as pd
@@ -113,7 +113,7 @@ class Engine():
 				args.append('?')
 					
 			try:
-				self.stocks[sym]=Instrument(sym,quan,cost,args[0],args[1],args[2],self.google(sym))
+				self.stocks[sym]=Instrument(sym,quan,cost,args[0],args[1],args[2],self.yfi(sym))
 				self.cash(self.stocks[sym].currency,(-cost)*quan)
 			except IndexError:
 				raise IndexError('first time buy,please provide full info')
@@ -127,7 +127,7 @@ class Engine():
 			else:
 				obj.cost=(obj.quan*obj.cost+quan*cost)/new_quan
 				obj.quan=new_quan
-				self.stocks[sym].price=self.google(sym)
+				self.stocks[sym].price=self.yfi(sym)
 		self.save_temp()
 
 
