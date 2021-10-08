@@ -22,8 +22,7 @@ class Engine():
 		except FileNotFoundError:
 				self.stocks=dict()
 				self.money=dict()
-		import yfinance as yf
-
+		
 	def save_temp(self):
 		import pickle
 		with open('data_temp.pickle','wb') as f:
@@ -44,6 +43,7 @@ class Engine():
 		self.save_temp()
 
 	def yfi(self,symbol):
+		import yfinance as yf
 		res=yf.Ticker(symbol)
 		return res.info['currentPrice']
 
@@ -116,7 +116,7 @@ class Engine():
 				self.stocks[sym]=Instrument(sym,quan,cost,args[0],args[1],args[2],self.yfi(sym))
 				self.cash(self.stocks[sym].currency,(-cost)*quan)
 			except IndexError:
-				raise IndexError('first time buy,please provide full info')
+				raise IndexError('first time position or existing position? also check ur symbol')
 
 		else:
 			obj=self.stocks[sym]
