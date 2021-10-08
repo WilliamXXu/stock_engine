@@ -2,7 +2,7 @@ from engine import Engine
 #换手率 波动率 做t rank by   division  level  我草泥马
 
 cur_dict={'US':'USD','UK':'GBP','HK':'HKD','CN':'CNY','EU':'EUR','CH':'CHF'}
-trans={':LON':'.L',':HKG':'.HK',':BME':'.MC',':NYSE':'',':OTCMKTS':'',':ETR':'.DE'}
+trans={':LON':'.L',':HKG':'.HK',':BME':'.MC',':NYSE':'',':OTCMKTS':'',':NASDAQ':'',':ETR':'.DE'}
 
 a=Engine()
 

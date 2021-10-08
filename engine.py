@@ -53,6 +53,8 @@ class Engine():
 	
 		d=dict()
 		res=yf.Ticker(symbol).info
+		print(res)
+		print(res['beta'])
 		for x in mp:
 				d[x]=res[mp[x]]
 		return d
