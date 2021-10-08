@@ -22,6 +22,7 @@ class Engine():
 		except FileNotFoundError:
 				self.stocks=dict()
 				self.money=dict()
+		import yfinance as yf
 
 	def save_temp(self):
 		import pickle
@@ -41,6 +42,10 @@ class Engine():
 			self.stocks=dict()
 			self.money=dict()
 		self.save_temp()
+
+	def yfi(self,symbol):
+		res=yf.Ticker(symbol)
+		return res.info['currentPrice']
 
 
 	def google(self,symbol):

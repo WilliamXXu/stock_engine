@@ -22,8 +22,10 @@ while True:
 		alis=input('Alis for this instrument?Press Enter if none\n')
 
 
+
 	if i=='1' or i=='2':
-		symbol=input('Instrument symbol? Google Finance format (eg. 000001:SHE)\n')
+		symbol=input('Instrument symbol? Yahoo Finance format (eg. 0688.HK)\n')
+		#symbol1=input('Instrument symbol? Google Finance format (eg. 000001:SHE)\n')
 		quantity=input('How many shares you buy/sell?\n')
 		cost=input('For how much you buy/sell it?\n')
 		fee=input('Estimate the commission please. Press Enter if zero\n')
