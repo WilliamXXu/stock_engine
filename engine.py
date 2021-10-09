@@ -89,7 +89,7 @@ class Engine():
 		for x in self.stocks:
 			t=vars(self.stocks[x])
 			for y in self.properties:
-				t[y]=x.properties[y]
+				t[y]=self.stocks[x].properties[y]
 			li.append(pd.DataFrame(t,index=['?']))
 
 		if len(li)>0:
