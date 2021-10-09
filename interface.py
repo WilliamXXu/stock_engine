@@ -42,6 +42,7 @@ while 1:
 			for y in trans.keys():
 				if y in symbol1:
 					symbol1=symbol.replace(y,trans[y])
+					print(symbol1)
 	if i=='2':
 		symbol=input('Instrument symbol? Google Finance format.\n')
 
