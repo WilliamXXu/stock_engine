@@ -41,8 +41,7 @@ while 1:
 		if not len(symbol1):
 			for y in trans.keys():
 				if y in symbol1:
-					symbol1=symbol1.replace(y,trans[y])
-					print(symbol1)
+					symbol1=symbol.replace(y,trans[y])
 	if i=='2':
 		symbol=input('Instrument symbol? Google Finance format.\n')
 
@@ -54,7 +53,6 @@ while 1:
 			fee='0'
 
 	if i=='1':
-		print(symbol1)
 		a.trade(symbol,quantity,cost,fee,currency,division,alis,symbol1)
 	if i=='2':
 		a.trade(symbol,quantity,cost,fee)
