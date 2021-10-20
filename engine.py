@@ -1,4 +1,4 @@
-#tetst message
+#rank by a certain column, trade history
 class Instrument():
 
 	def __init__(self,sym,quan,cost,currency,division,alis,sym1,price):
@@ -49,7 +49,7 @@ class Engine():
 
 	def yfi(self,symbol):
 		import yfinance as yf
-		mp={'Beta':'beta','PE':'trailingPE','ROE':'returnOnEquity','Yield':'trailingAnnualDividendYield'}
+		mp={'Beta':'beta','PE':'trailingPE','ROE':'returnOnEquity','Yield':'trailingAnnualDividendYield','Sector':'sector','Industry':'industry','Country':'country'}
 		d=dict()
 		res=yf.Ticker(symbol).info
 		for x in mp:
