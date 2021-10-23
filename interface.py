@@ -77,8 +77,3 @@ while 1:
 		else:
 			pass
 		a=Engine()
-	if i == '6':
-
-
-
-
