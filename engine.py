@@ -80,7 +80,7 @@ class Engine():
 		for x in li:
 			self.stocks[x].properties=self.yfi(self.stocks[x].sym1)
 
-	def __repr__(self):
+	def show(self,*sortby):
 		import pandas as pd
 
 		print('\n\n')
@@ -96,15 +96,11 @@ class Engine():
 			res=pd.concat(li)
 			gain=lambda x,y:(y/x-1)*100
 			res['gain%']=gain(res.cost,res.price)
+			res.sort_values(by=sortby[0],ascending=0)
 			print(res.to_string())
 		print('\n\n')
 		print(self.money)
 		return '\n'
-
-	def __print__(self):
-		__repr__(self)
-
-
 
 
 	def cash(self,currency,amount):
