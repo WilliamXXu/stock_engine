@@ -7,7 +7,7 @@ trans={':LON':'.L',':HKG':'.HK',':BME':'.MC',':NYSE':'',':OTCMKTS':'',':NASDAQ':
 a=Engine()
 
 while 1:
-	i=input('---------------------------------\nHow can I serve you, Commander?\n u. price update \n uu. full update \n 0. view portofolio (updated price) \n 1. open a new position \n 2. deal with an existing position \n 3. Save changes \n 4. retrieve temporary data\n 5. manage additional indicators 6.advanced analytics\n---------------------------------\n')
+	i=input('---------------------------------\nHow can I serve you, Commander?\n u. price update \n uu. full update \n 0. view portofolio \n 1. open a new position \n 2. deal with an existing position \n 3. Save changes \n 4. retrieve temporary data\n 5. manage additional indicators 6.advanced analytics\n---------------------------------\n')
 	if i =='u':
 		a.update()
 	if i =='uu':
@@ -28,7 +28,8 @@ while 1:
 
 
 	if i=='0':
-		x=input('Sort by?')
+		a.show()
+		x=input('\nSort by which column? Press Enter if not interested\n')
 		if len(x):	
 			try:
 				a.show(x)
