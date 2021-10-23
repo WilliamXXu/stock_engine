@@ -94,6 +94,7 @@ class Engine():
 
 		if len(li)>0:
 			res=pd.concat(li)
+			res=res.drop(columns=['properties'])
 			gain=lambda x,y:(y/x-1)*100
 			res['gain%']=gain(res.cost,res.price)
 			if len(sortby):
