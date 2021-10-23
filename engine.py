@@ -97,8 +97,7 @@ class Engine():
 			gain=lambda x,y:(y/x-1)*100
 			res['gain%']=gain(res.cost,res.price)
 			if len(sortby):
-				print('sort')
-				res.sort_values(by=sortby[0],ascending=0)
+				res=res.sort_values(by=sortby[0],ascending=0)
 			print(res.to_string())
 		print('\n\n')
 		print(self.money)
