@@ -82,7 +82,7 @@ class Engine():
 
 	def updateForex(self):
 		self.forex=dict()
-		for x in set('USD','GBP','EUR','CNY','CHF'):
+		for x in set(['USD','GBP','EUR','CNY','CHF']):
 			self.forex[x]=self.google('HKD-'+x)
 
 	def prepareDf(self,*sortby):  #gain and cap added, total cash added，total money computed
