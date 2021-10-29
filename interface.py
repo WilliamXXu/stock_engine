@@ -7,7 +7,7 @@ trans={':LON':'.L',':HKG':'.HK',':BME':'.MC',':NYSE':'',':OTCMKTS':'',':NASDAQ':
 a=Engine()
 
 while 1:
-	i=input('---------------------------------\nHow can I serve you, Commander?\n u. price update \n uu. full update \n 0. view portofolio \n 1. open a new position \n 2. deal with an existing position \n 3. Save changes \n 4. retrieve temporary data\n 5. manage additional indicators 6.advanced analytics\n---------------------------------\n')
+	i=input('---------------------------------\nHow can I serve you, Commander?\n u. price update \n uu. full update \n 0. view portofolio \n 1. open a new position \n 2. deal with an existing position \n 3. Save changes \n 4. retrieve temporary data\n 5. manage additional indicators\n 6.advanced analytics\n---------------------------------\n')
 	if i =='u':
 		a.update()
 	if i =='uu':
@@ -15,7 +15,7 @@ while 1:
 		a.propertyUpdate()
 	if i =='5':
 		print('Current indicators: '+str(a.properties)+' \n')
-		print('You can choose from: Beta, PE, ROE, Yield\n')
+		print('You can choose from: Beta, PE, ROE, Yield, Sector, Industry, Country\n')
 		while 1:
 			ind=input('The indicator that you want to add or remove? Press Enter to exit.\n')
 			if not len(ind):
@@ -28,11 +28,11 @@ while 1:
 
 
 	if i=='0':
-		a.show()
+		a.show(a.prepareDf())
 		x=input('\nSort by which column? Press Enter if not interested\n')
 		if len(x):	
 			try:
-				a.show(x)
+				a.show(a.prepareDf(x))
 			except:
 				print('Column name wrong!\n')
 		input('\nPress Enter to continue\n')
@@ -41,7 +41,7 @@ while 1:
 		currency=input('Which currency? (USD,GBP,HKD...) Press Enter if can be inferred\n')
 		if not len(currency):
 			currency=cur_dict[division]
-		alis=input('Alis for this instrument?Press Enter if none\n')
+		alis=input('Alis for this instrument? Press Enter if none\n')
 		symbol=input('Instrument symbol? Google Finance format.\n')
 		symbol1=input('Instrument symbol? Yahoo Finance format. Press Enter if can be inferred\n')
 		if not len(symbol1):
@@ -78,3 +78,15 @@ while 1:
 		else:
 			pass
 		a=Engine()
+	if i == '6':
+		from analytics import Analytics
+		a.updateForex()
+		b=Analytics(a.stocks,a.money,a.prepareDf())
+		j=input('\nPlease choose from the following:\n 0.total asset\n 1.average yield\n 2.average beta\n')
+		if j == '0':
+			print(b.asset)
+		if j == '1':
+			print(b.average_div())
+		if j == '2':
+			print(b.average_beta())
+		

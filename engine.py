@@ -3,20 +3,20 @@ class Instrument():
 
 	def __init__(self,sym,quan,cost,currency,division,alis,sym1,price):
 
-		self.sym=sym
+		self.sym=sym      #google finance, the identifier
 		self.currency=currency
 		self.division=division
 		self.quan=quan
 		self.cost=cost
 		self.price=price
 		self.alis=alis
-		self.sym1=sym1
+		self.sym1=sym1     #yahoo finance
 		self.properties=dict()
 		
 class Engine():
 	def __init__(self):
 		import pickle
-		
+		self.updateForex()
 		try:
 			with open('data.pickle','rb') as g:
 				temp=pickle.load(g)
@@ -80,29 +80,49 @@ class Engine():
 		for x in li:
 			self.stocks[x].properties=self.yfi(self.stocks[x].sym1)
 
-	def show(self,*sortby):
-		import pandas as pd
+	def updateForex(self):
+		self.forex=dict()
+		for x in set('USD','GBP','EUR','CNY','CHF'):
+			self.forex[x]=self.google('HKD-'+x)
 
+	def prepareDf(self,*sortby):  #gain and cap added, total cash added，total money computed
+		self.money['total']=self.money['HKD']
+		for n in self.money:
+			if n!='HKD':
+				self.money['total']+=self.money[n]*self.forex[n]
+
+		import pandas as pd
 		print('\n\n')
 		li=[]
-
 		for x in self.stocks:
 			t=vars(self.stocks[x])
+			t['cap']=t['price']*t['quan']
+			if t['currency'] != 'HKD':
+				t['cap']*=self.forex[t['currency']]
+
 			for y in self.properties:
-				t[y]=self.stocks[x].properties[y]
+				t[y]=self.stocks[x].properties[y]	
 			li.append(pd.DataFrame(t,index=['?']))
 
-		if len(li)>0:
-			res=pd.concat(li)
-			res=res.drop(columns=['properties'])
-			gain=lambda x,y:(y/x-1)*100
-			res['gain%']=gain(res.cost,res.price)
-			if len(sortby):
-				res=res.sort_values(by=sortby[0],ascending=0)
+		res=pd.concat(li)
+		res=res.drop(columns=['properties','sym1'])
+		res=res.set_index('sym')
+		gain=lambda x,y:(y/x-1)*100
+		res['gain%']=gain(res.cost,res.price)
+		if len(sortby):
+			res=res.sort_values(by=sortby[0],ascending=0)
+		return res
+	
+
+
+	def show(self,res):
+		if len(res)>0:	
 			print(res.to_string())
-		print('\n\n')
-		print(self.money)
-		return '\n'
+			print('\n\n')
+			print(self.money)
+			return '\n'
+
+
 
 
 	def cash(self,currency,amount):
