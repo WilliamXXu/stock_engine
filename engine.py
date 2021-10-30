@@ -120,7 +120,7 @@ class Engine():
 
 
 	def show(self,res):
-		if len(res)>0:	
+		if res:	
 			print(res.to_string())
 			print('\n\n')
 			print(self.money)
