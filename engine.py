@@ -90,7 +90,8 @@ class Engine():
 		print(self.money)
 		for n in self.money:
 			if n!='HKD':
-				self.money['total']+=self.money[n]*self.forex[n]
+				print(n)
+				self.money['total']=self.money['total']+self.money[n]*self.forex[n]
 
 		import pandas as pd
 		print('\n\n')
