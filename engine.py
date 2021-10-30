@@ -105,15 +105,17 @@ class Engine():
 			for y in self.properties:
 				t[y]=self.stocks[x].properties[y]	
 			li.append(pd.DataFrame(t,index=['?']))
-
-		res=pd.concat(li)
-		res=res.drop(columns=['properties','sym1'])
-		res=res.set_index('sym')
-		gain=lambda x,y:(y/x-1)*100
-		res['gain%']=gain(res.cost,res.price)
-		if len(sortby):
-			res=res.sort_values(by=sortby[0],ascending=0)
-		return res
+		try:
+			res=pd.concat(li)
+			res=res.drop(columns=['properties','sym1'])
+			res=res.set_index('sym')
+			gain=lambda x,y:(y/x-1)*100
+			res['gain%']=gain(res.cost,res.price)
+			if len(sortby):
+				res=res.sort_values(by=sortby[0],ascending=0)
+			return res
+		except:
+			pass
 	
 
 
