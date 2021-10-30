@@ -123,8 +123,8 @@ class Engine():
 		if res:	
 			print(res.to_string())
 			print('\n\n')
-			print(self.money)
-			return '\n'
+		print(self.money)
+		print('\n')
 
 
 
