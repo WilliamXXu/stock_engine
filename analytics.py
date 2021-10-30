@@ -7,6 +7,11 @@ class Analytics():
         self.asset=sum(self.df['cap'])+money['total']
         self.df['percent']=self.df['cap']/self.asset
 
+    def percentage(self):
+        res=self.df['percent']
+        res=res.sort_values(by='percent',ascending=0)
+        print(res.to_string())
+
     def average_div(self):
         res=0
         for x in self.stocks.values():
