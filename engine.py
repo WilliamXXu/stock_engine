@@ -25,7 +25,7 @@ class Engine():
 				self.properties=temp[2]
 		except FileNotFoundError:
 				self.stocks=dict()
-				self.money=dict()
+				self.money={'HKD':0,'USD':0,'CNY':0,'GBP':0,'EUR':0,'CHF':0}
 				self.properties={'Beta','PE','ROE','Yield'}	 #default
 		
 	def save_temp(self):
