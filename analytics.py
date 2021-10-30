@@ -9,7 +9,7 @@ class Analytics():
 
     def percentage(self):
         res=self.df['percent']
-        res=res.sort_values(ascending=0)
+        res=res.sort_values(ascending=False)
         print(res.to_string())
 
     def average_div(self):
