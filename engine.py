@@ -121,7 +121,7 @@ class Engine():
 
 
 	def show(self,res):
-		if res!=None:
+		if not res is None:
 			print(res.to_string())
 			print('\n\n')
 		print(self.money)
