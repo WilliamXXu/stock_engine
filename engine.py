@@ -84,6 +84,7 @@ class Engine():
 		self.forex=dict()
 		for x in set(['USD','GBP','EUR','CNY','CHF']):
 			self.forex[x]=self.google(x+'-HKD')
+		self.forex['GBP']/=100
 
 	def prepareDf(self,*sortby):  #gain and cap added, total cash added，total money computed
 		total=self.money['HKD']
