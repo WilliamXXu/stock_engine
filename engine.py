@@ -86,12 +86,12 @@ class Engine():
 			self.forex[x]=self.google('HKD-'+x)
 
 	def prepareDf(self,*sortby):  #gain and cap added, total cash added，total money computed
-		self.money['total']=self.money['HKD']
-		print(self.money)
+		total=self.money['HKD']
 		for n in self.money:
 			if n!='HKD':
-				print(n)
-				self.money['total']=self.money['total']+self.money[n]*self.forex[n]
+				total+=self.money[n]*self.forex[n]
+		self.money['total']=total
+		print(self.money)
 
 		import pandas as pd
 		print('\n\n')
