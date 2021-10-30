@@ -87,5 +87,7 @@ while 1:
 		print(b.average_div())
 		print('\naverage beta is: ')	
 		print(b.average_beta())
+		print('\npercentage of stocks: ')
+		print(b.percentage())
 
 		
