@@ -80,13 +80,12 @@ while 1:
 		a=Engine()
 	if i == '6':
 		from analytics import Analytics
-		a.updateForex()
 		b=Analytics(a.stocks,a.money,a.prepareDf())
-		j=input('\nPlease choose from the following:\n 0.total asset\n 1.average yield\n 2.average beta\n')
-		if j == '0':
-			print(b.asset)
-		if j == '1':
-			print(b.average_div())
-		if j == '2':
-			print(b.average_beta())
+		print('\ntotal asset is: ')
+		print(b.asset)
+		print('\naverage yield (TTM) is: ')
+		print(b.average_div())
+		print('\naverage beta is: ')	
+		print(b.average_beta())
+
 		
