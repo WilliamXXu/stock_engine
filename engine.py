@@ -88,7 +88,8 @@ class Engine():
 	def prepareDf(self,*sortby):  #gain and cap added, total cash added，total money computed
 		total=self.money['HKD']
 		for n in self.money:
-			if n!='HKD' and n!='total':
+			if (n!='HKD') and (n!='total'):
+				print(n)
 				total+=self.money[n]*self.forex[n]
 		self.money['total']=total
 		print(self.money)
